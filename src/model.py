@@ -45,7 +45,7 @@ def initParams(Cemb,options):
                             ortho_weight(nhiddens)],axis=1)
     params['lstmU'] = lstmU
     lstmb = np.zeros((4*nhiddens,))
-    for i in xrange(nhiddens,2*nhiddens):
+    for i in range(nhiddens,2*nhiddens):
         lstmb[i] = 1.
     params['lstmb'] = lstmb.astype(theano.config.floatX)
 
@@ -55,7 +55,7 @@ def initParams(Cemb,options):
     params['cW'] =np.asarray(np.random.uniform(low=-1.,high=1.,size=(nhiddens,presum*nhiddens))).astype(theano.config.floatX)
     
     past = 1
-    for i in xrange(2,max_word_len+1):
+    for i in range(2,max_word_len+1):
         params['cW'][:,past*nhiddens:(past+i)*nhiddens]=  params['cW'][:,past*nhiddens:(past+i)*nhiddens]/float(i)
         past+=i
     params['cb'] =np.zeros((max_word_len*nhiddens,)).astype(theano.config.floatX)
@@ -270,7 +270,7 @@ def train_model(
     config['options'] = options
     config['options']['optimizer'] = optimizer.__name__
     config['character_idx_map'] = character_idx_map
-    f = open('config','wb')
+    f = open('config','w')
     f.write(json.dumps(config))
     f.close()
     print ('%resume model building')
@@ -320,7 +320,7 @@ def train_model(
     
     print ('Training model')
     start_time = time.time()
-    for eidx in xrange(max_epochs):
+    for eidx in range(max_epochs):
         batches_idx = get_minibatches_idx(seqs,tot_lens,batch_size,shuffle=shuffle_data)
         for batch_idx in batches_idx:
             X = [seqs[t]  for t in batch_idx]

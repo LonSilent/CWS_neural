@@ -25,7 +25,7 @@ def initCemb(ndims,train_file,pre_trained,thr = 5.):
     if pre_trained is not None:
         pre_trained = gensim.models.Word2Vec.load(pre_trained)
         # pre_trained_vocab = set([ unicode(w.decode('utf8')) for w in pre_trained.vocab.keys()])
-        pre_trained_vocab = set([w for w in pre_trained.vocab.keys()])
+        pre_trained_vocab = set([w for w in pre_trained.wv.vocab.keys()])
     for character in train_vocab:
         if train_vocab[character]< thr:
             continue
@@ -45,7 +45,7 @@ def initCemb(ndims,train_file,pre_trained,thr = 5.):
 def SMEB(lens):
     idxs = []
     for len in lens:
-        for i in xrange(len-1):
+        for i in range(len-1):
             idxs.append(0)
         idxs.append(len)
     return idxs
@@ -168,9 +168,9 @@ def segment(params,options,X,X_lens,dropout,discount=0.,Z=None):
         now = TopkHeap(beam_size)
         now.push(LSTMState(score=0.,margin_loss=0.,h=h,c=c,prevState=None,len=None,randomValue = random.random()))
         history = [now]
-        for t in xrange(1,1+X_lens[sampleId]):
+        for t in range(1,1+X_lens[sampleId]):
             now = TopkHeap(beam_size)
-            for prev in xrange(max(0,t-max_width),t):
+            for prev in range(max(0,t-max_width),t):
                 len = t-prev
                 word = get_word(ndims,
                                 len,

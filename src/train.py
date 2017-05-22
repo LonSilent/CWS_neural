@@ -28,7 +28,7 @@ if __name__ == "__main__":
                   train_file = '../data/train_line.txt',
                   dev_file = '../data/as_test.utf8',
                   lr = 0.2,
-                  pre_training = '../w2v/unigram-50.model'
+                  pre_training = '../w2v/unigram-50-py3.model'
                   )
       else:
             print ('using dynet')
