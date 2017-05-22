@@ -171,7 +171,7 @@ def get_score(emb,seg,mask,tparams,options,_a_,_b_,_c_,_d_):
         reset_gate=T.nnet.sigmoid(T.dot(rgW[:ln,an:an+ln],XL)+rgb[an:an+ln])
         com=T.concatenate([T.tanh(T.dot(cW[:,an:an+ln],reset_gate*XL)+cb[ln-nhiddens:ln]),XL])
         update_gate = T.exp(T.dot(ugW[:ln+nhiddens,an+ln-nhiddens:an+ln+ln],com)+ugb[an+ln-nhiddens:an+ln+ln]).reshape((len+1,nhiddens))
-        word = (update_gate/update_gate.sum(axis=0))*(com.reshape((len+1,nhiddens)))
+        word = (update_gate//update_gate.sum(axis=0))*(com.reshape((len+1,nhiddens)))
         word = word.sum(axis=0)
         return word
     
