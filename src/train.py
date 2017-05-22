@@ -10,7 +10,7 @@ if __name__ == "__main__":
       if sys.argv[1]=='-t': 
             print 'using theano'
             train_model(
-                  max_epochs = 50,
+                  max_epochs = 20,
                   optimizer = adagrad,
                   batch_size = 256,
                   ndims = 100,
