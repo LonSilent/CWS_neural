@@ -19,7 +19,8 @@ def output_result(Y,table,path,filename):
     fo = open(filename,'wb')
     Y_idx = 0
     for line in fi.readlines():
-        sent = unicode(line.decode('utf8')).split()
+        # sent = unicode(line.decode('utf8')).split()
+        sent = line.split()
         Left = 0
         output_sent = []
         for idx,word in enumerate(sent):
@@ -53,7 +54,7 @@ def test(character_idx_map,
     lens = [len(x) for x in X]
     idx_list = sorted(idx_list,cmp = lambda x,y: cmp(lens[x],lens[y]))
     Y = []
-    print 'count_test_sentences',len(X)
+    print ('count_test_sentences',len(X))
     
     for i in range(n//batch_size):
         batch_idx = idx_list[start:start+batch_size]

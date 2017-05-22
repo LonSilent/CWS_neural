@@ -260,12 +260,12 @@ def train_model(
     pre_training = '../w2v/c_vecs_100'
 ):
     options = locals().copy()
-    print 'model options:',options
-    print 'Building model'
+    print ('model options:',options)
+    print ('Building model')
     
     Cemb,character_idx_map = tools.initCemb(ndims,train_file,pre_training)
     
-    print '%saving config file'
+    print ('%saving config file')
     config = {}
     config['options'] = options
     config['options']['optimizer'] = optimizer.__name__
@@ -273,7 +273,7 @@ def train_model(
     f = open('config','wb')
     f.write(json.dumps(config))
     f.close()
-    print '%resume model building'
+    print ('%resume model building')
     
     params = initParams(Cemb,options)
     if load_params is not None:
@@ -304,7 +304,7 @@ def train_model(
 
     f_update = theano.function([T_x,T_dropout,T_y,T_yy,T_y_mask,T_yy_mask],T_cost,updates=T_updates)
 
-    print 'Loading data'
+    print ('Loading data')
     seqs,lenss,tagss = tools.prepareData(character_idx_map,train_file)
     if max_sent_len is not None:
         survived = []
@@ -316,9 +316,9 @@ def train_model(
         tagss = [ tagss[idx] for idx in survived]
 
     tot_lens = [len(seq) for seq in seqs]
-    print 'count_training_sentences',len(seqs)
+    print ('count_training_sentences',len(seqs))
     
-    print 'Training model'
+    print ('Training model')
     start_time = time.time()
     for eidx in xrange(max_epochs):
         batches_idx = get_minibatches_idx(seqs,tot_lens,batch_size,shuffle=shuffle_data)
@@ -348,5 +348,5 @@ def train_model(
         if optimizer is adagrad:
             np.savez('backup',**get_params(ss_grad))
         end_time = time.time()
-        print 'Trained %s epoch(s) took %.lfs per epoch'%(eidx+1,(end_time-start_time)/(eidx+1))
+        print ('Trained %s epoch(s) took %.lfs per epoch'%(eidx+1,(end_time-start_time)/(eidx+1)))
 

@@ -8,7 +8,7 @@ from model import adadelta,adagrad,sgd
 if __name__ == "__main__":
       assert (sys.argv[1]=="-d" or sys.argv[1]=="-t"), "-d dynet / -t theano"
       if sys.argv[1]=='-t': 
-            print 'using theano'
+            print ('using theano')
             train_model(
                   max_epochs = 20,
                   optimizer = adagrad,
@@ -31,7 +31,7 @@ if __name__ == "__main__":
                   pre_training = '../w2v/unigram-50.model'
                   )
       else:
-            print 'using dynet'
+            print ('using dynet')
             from dy_model import dy_train_model
             dy_train_model(
                   max_epochs = 50,
