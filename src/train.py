@@ -13,7 +13,7 @@ if __name__ == "__main__":
                   max_epochs = 50,
                   optimizer = adagrad,
                   batch_size = 256,
-                  ndims = 50,
+                  ndims = 100,
                   nhiddens = 50,
                   dropout_rate = 0.2,
                   regularization = 0.000001,
@@ -25,10 +25,10 @@ if __name__ == "__main__":
                   max_sent_len = 60,
                   beam_size = 4,
                   shuffle_data = True,
-                  train_file = '../data/pku_train',
-                  dev_file = '../data/pku_dev',
+                  train_file = '../data/train_line.txt',
+                  dev_file = '../data/as_test.utf8',
                   lr = 0.2,
-                  pre_training = '../w2v/c_vecs_50'
+                  pre_training = '../w2v/unigram-100.model'
                   )
       else:
             print 'using dynet'
