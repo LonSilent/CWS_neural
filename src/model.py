@@ -335,8 +335,8 @@ def train_model(
             #print 'numpy',time.time()-numpy_start
             Y = tools.asMatrix(Y,transpose=True)
             YY = tools.asMatrix(YY,transpose=True)
-            Y_mask = (Y/Y).astype(theano.config.floatX)
-            YY_mask =(YY/YY).astype(theano.config.floatX)
+            Y_mask = (Y//Y).astype(theano.config.floatX)
+            YY_mask =(YY//YY).astype(theano.config.floatX)
             #theano_start = time.time()
             f_update(X,dropout,Y,YY,Y_mask,YY_mask)
             #print 'theano',time.time()-theano_start
