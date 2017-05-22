@@ -13,7 +13,7 @@ if __name__ == "__main__":
                   max_epochs = 20,
                   optimizer = adagrad,
                   batch_size = 256,
-                  ndims = 100,
+                  ndims = 50,
                   nhiddens = 50,
                   dropout_rate = 0.2,
                   regularization = 0.000001,
@@ -28,7 +28,7 @@ if __name__ == "__main__":
                   train_file = '../data/train_line.txt',
                   dev_file = '../data/as_test.utf8',
                   lr = 0.2,
-                  pre_training = '../w2v/unigram-100.model'
+                  pre_training = '../w2v/unigram-50.model'
                   )
       else:
             print 'using dynet'
