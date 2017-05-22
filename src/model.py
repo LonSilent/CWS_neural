@@ -49,7 +49,7 @@ def initParams(Cemb,options):
         lstmb[i] = 1.
     params['lstmb'] = lstmb.astype(theano.config.floatX)
 
-    presum = max_word_len*(max_word_len+1)/2
+    presum = max_word_len*(max_word_len+1)//2
     params['rgW'] = np.asarray(np.random.uniform(low=-0.01,high=0.01,size=(max_word_len*nhiddens,presum*nhiddens))).astype(theano.config.floatX)
     params['rgb'] = np.zeros((presum*nhiddens,)).astype(theano.config.floatX)
     params['cW'] =np.asarray(np.random.uniform(low=-1.,high=1.,size=(nhiddens,presum*nhiddens))).astype(theano.config.floatX)
