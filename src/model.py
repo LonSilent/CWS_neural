@@ -74,13 +74,13 @@ def initTparams(params):
         init Theano shared variables
     '''
     tparams = OrderedDict()
-    for name,param in params.iteritems():
+    for name,param in params.items():
         tparams[name] = theano.shared(numpy_floatX(param), name=name)
     return tparams
 
 def get_params(tparams):
     params = OrderedDict()
-    for name,param in tparams.iteritems():
+    for name,param in tparams.items():
         params[name] = param.get_value(borrow=True)
     return params
 
@@ -105,7 +105,7 @@ def get_minibatches_idx(X,lens,batch_size,shuffle):
 def prepare_adadelta(tparams):
     ms_up = OrderedDict()
     ms_grad = OrderedDict()
-    for kk,pp in tparams.iteritems():
+    for kk,pp in tparams.items():
         ms_up[kk] = theano.shared(np.zeros(pp.get_value().shape,dtype=theano.config.floatX),name = 'ms_up_%s'%kk)
         ms_grad[kk] = theano.shared(np.zeros(pp.get_value().shape,dtype=theano.config.floatX),name = 'ms_grad_%s'%kk)
     return ms_up,ms_grad
@@ -125,7 +125,7 @@ def adadelta(ms_up,ms_grad,tparams,cost,decay=0.95,epsilon=1e-6):
 
 def prepare_adagrad(tparams):
     ss_grad = OrderedDict()
-    for kk,pp in tparams.iteritems():
+    for kk,pp in tparams.items():
         ss_grad[kk] = theano.shared(np.zeros(pp.get_value().shape,dtype=theano.config.floatX),name = 'ss_grad_%s'%kk)
     return ss_grad
 
@@ -278,7 +278,7 @@ def train_model(
     params = initParams(Cemb,options)
     if load_params is not None:
         pp = np.load(load_params)
-        for kk,vv in params.iteritems():
+        for kk,vv in params.items():
             if kk not in pp:
                 raise Warning('%s is not in the archive' % kk)
             params[kk] = pp[kk]
