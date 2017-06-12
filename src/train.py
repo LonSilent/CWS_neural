@@ -47,9 +47,9 @@ if __name__ == "__main__":
                   max_sent_len = 60,
                   beam_size = 4,
                   shuffle_data = True,
-                  train_file = '../data/pku_train_all',
-                  dev_file = '../data/pku_test',
+                  train_file = '../data/very_small',
+                  dev_file = '../data/very_small',
                   lr = 0.2,
-                  pre_training = '../w2v/c_vecs_50',
+                  pre_training = '../w2v/uni_small_50',
                   )
 

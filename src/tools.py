@@ -11,11 +11,11 @@ import scipy
 import re
 import heapq
 
-def initCemb(ndims,train_file,pre_trained,thr = 5.):
+def initCemb(ndims,train_file,pre_trained,thr = 0):
     f = open(train_file)
     train_vocab = defaultdict(float)
     for line in f.readlines():
-        sent = unicode(line.decode('utf8')).split()
+        sent = unicode(line.decode('utf8')).split(' ')
         for word in sent:
             for character in word:
                 train_vocab[character]+=1

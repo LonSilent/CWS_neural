@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import re
 
-Maximum_Word_Length = 4 
+Maximum_Word_Length = 10
 pku_train_file ='../original/pku_training.utf8'
 pku_test_file = '../original/pku_test_gold.utf8'
 msr_train_file ='../original/msr_training.utf8'
@@ -20,8 +20,8 @@ def strQ2B(ustring):
         inside_code=ord(uchar)
         if inside_code == 12288:                              #全角空格直接转换
             inside_code = 32
-        elif (inside_code >= 65281 and inside_code <= 65374): #全角字符（除空格）根据关系转化
-            inside_code -= 65248
+        # elif (inside_code >= 65281 and inside_code <= 65374): #全角字符（除空格）根据关系转化
+        #     inside_code -= 65248
         
         rstring += unichr(inside_code)
     return rstring
@@ -50,16 +50,16 @@ def preprocess(path,filename,longwords=None):
     rNUM = u'(-|\+)?\d+((\.|·)\d+)?%?'
     rENG = u'[A-Za-z_.]+'
     for line in f.readlines():
-        sent = strQ2B(unicode(line.decode('utf8')).strip()).split(u'  ')
+        sent = strQ2B(unicode(line.decode('utf8')).strip()).split(u' ')
         new_sent = []
         for word in sent:
-            word = re.sub(u'\s+','',word,flags =re.U)
-            word = re.sub(rNUM,u'0',word,flags= re.U)
-            word = re.sub(rENG,u'X',word)
+            # word = re.sub(u'\s+','',word,flags =re.U)
+            # word = re.sub(rNUM,u'0',word,flags= re.U)
+            # word = re.sub(rENG,u'X',word)
             #if word in idioms:      # use Chinese idioms dictionary.
             #   count_idioms+=1
             #    word = u'I'
-            if word in longws:       #to remove those word longer than our maximum word length setting.
+            if len(word) > Maximum_Word_Length:       #to remove those word longer than our maximum word length setting.
                 count_longws+=1
                 word = u'L'
             new_sent.append(word)
@@ -70,7 +70,7 @@ def preprocess(path,filename,longwords=None):
     check(sents)
     f= open(filename,'wb')
     for sent in sents:
-        f.write('  '.join(sent).encode('utf8')+'\r\n')
+        f.write(' '.join(sent).encode('utf8')+'\r\n')
     f.close()
 
 

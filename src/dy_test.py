@@ -31,7 +31,7 @@ def test(cws,filename,output_path):
             words = seg(char_seqs[seq_idx],list(''.join(sent[Left:])))
             seq_idx += 1
             output_sent.extend(words)
-        output_sent = '  '.join(output_sent).encode('utf8')+'\r\n'
+        output_sent = ' '.join(output_sent).encode('utf8')+'\r\n'
         fo.write(output_sent)
     fo.close()
 
