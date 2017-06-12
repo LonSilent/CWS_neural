@@ -41,7 +41,7 @@ if __name__ == "__main__":
                   dropout_rate = 0.2,
                   regularization = 0.000001,
                   margin_loss_discount = 0.2,
-                  max_word_len = 4,
+                  max_word_len = 10,
                   load_params = None,
                   start_point = 1,
                   max_sent_len = 60,
