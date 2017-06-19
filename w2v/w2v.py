@@ -24,19 +24,19 @@ class MySentences(object):
         for line in open(self.filename):
             yield [x.encode('utf8') for x in list(line.decode('utf8').strip().split(' ')) if x != ' ']
 
+if __name__ == '__main__':
+    f = open('../data/trian')
+    fo = open('uni-small','wb')
+    for line in f.readlines():
+        sent = strQ2B(unicode(line.decode('utf8')).strip())
+        if len(sent) > 0:
+            fo.write(sent.encode('utf8') + '\n')
+    f.close()
+    fo.close()
 
-f= open('../data/very_small')
-fo= open('uni-small','wb')
-for line in f.readlines():
-    sent = strQ2B(unicode(line.decode('utf8')).strip())
-    if len(sent)>0:
-        fo.write(sent.encode('utf8')+'\n')
-f.close()
-fo.close()
-
-sents = MySentences('uni-small')
-sizes = [50,60,70,80,90,100]
-for s in sizes:
-    model = gensim.models.Word2Vec(sents,size=s,window=8,workers=4,max_vocab_size=10000,iter=5)
-    model.save('corpus_vecs_%s'%(s,))
+    sents = MySentences('uni-small')
+    sizes = [50]
+    for s in sizes:
+        model = gensim.models.Word2Vec(sents,size=s,window=8,workers=12,max_vocab_size=10000,iter=5)
+        model.save('ec_vecs_%s'%(s,))
 
