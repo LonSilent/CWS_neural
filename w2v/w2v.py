@@ -25,7 +25,7 @@ class MySentences(object):
             yield [x.encode('utf8') for x in list(line.decode('utf8').strip().split(' ')) if x != ' ']
 
 if __name__ == '__main__':
-    f = open('../data/trian')
+    f = open('../data/train')
     fo = open('uni-small','wb')
     for line in f.readlines():
         sent = strQ2B(unicode(line.decode('utf8')).strip())
