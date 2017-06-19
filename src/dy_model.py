@@ -6,6 +6,7 @@ from model import get_minibatches_idx
 from dy_test import test
 import numpy as np
 import random,time
+import os
 
 Sentence = namedtuple('Sentence',['score','score_expr','LSTMState','y','prevState','wlen'])
 
@@ -236,6 +237,7 @@ def dy_train_model(
         print '\t',kk,'\t',vv
     
     Cemb, character_idx_map = initCemb(ndims,train_file,pre_training)
+    train_name = os.path.splitext(os.path.basename(train_file))[0]
 
     cws = CWS(Cemb,character_idx_map,options)
 
@@ -277,6 +279,6 @@ def dy_train_model(
         print 'Trained %s epoch(s) (%d samples) took %.lfs per epoch'%(eidx+1,nsamples,(end_time-start_time)/(eidx+1))
 
         if (eidx + start_point) % 10 == 0:
-            test(cws,dev_file,'../result/dev_result%d'%(eidx+start_point))
+            test(cws,dev_file,'../result/%s_result%d'%(train_name, eidx+start_point))
         #cws.save('epoch%d'%(eidx+start_point))
         #print 'Current model saved'
