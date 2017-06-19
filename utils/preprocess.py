@@ -42,15 +42,16 @@ def preprocess(path,filename,longwords=None):
     count_longws = 0
     f = open(path)
     sents = []
-    rNUM = u'(-|\+)?\d+((\.|·)\d+)?%?'
-    rENG = u'[A-Za-z_.]+'
+    # rNUM = u'(-|\+)?\d+((\.|·)\d+)?%?'
+    rENG_NUM = u'^[A-Za-z0-9_-]*$'
     for line in f.readlines():
         sent = strQ2B(unicode(line.decode('utf8')).strip()).split(u' ')
         new_sent = []
         for word in sent:
             # word = re.sub(u'\s+','',word,flags =re.U)
-            word = re.sub(rNUM,u'0',word,flags= re.U)
-            word = re.sub(rENG,u'X',word)
+            # word = re.sub(rNUM,u'0',word,flags= re.U)
+            if re.match(rENG_NUM, word):
+                word = u'X'
             word = word.replace('0X', '0 X').replace('X0','X 0')
             if len(word) > Maximum_Word_Length:
                 count_longws+=1
