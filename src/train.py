@@ -48,9 +48,9 @@ if __name__ == "__main__":
                   beam_size = 4,
                   shuffle_data = True,
                   train_file = '../data/train-ec',
-                  dev_file = '../data/trainec',
+                  dev_file = '../data/train-ec',
                   lr = 0.2,
-                  pre_training = '../w2v/ec_train_50',
+                  pre_training = '../w2v/ec_sentence_50',
                   is_test = False
                   )
 
