@@ -38,5 +38,5 @@ if __name__ == '__main__':
     sizes = [50]
     for s in sizes:
         model = gensim.models.Word2Vec(sents,size=s,window=8,workers=12,max_vocab_size=10000,iter=5)
-        model.save('ec_vecs_%s'%(s,))
+        model.save('ec_train_%s'%(s,))
 

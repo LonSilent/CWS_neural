@@ -279,6 +279,6 @@ def dy_train_model(
         print 'Trained %s epoch(s) (%d samples) took %.lfs per epoch'%(eidx+1,nsamples,(end_time-start_time)/(eidx+1))
 
         if (eidx + start_point) % 10 == 0:
-            test(cws,dev_file,'../result/%s_result%d'%(train_name, eidx+start_point))
-        #cws.save('epoch%d'%(eidx+start_point))
-        #print 'Current model saved'
+            test(cws,dev_file,'../result/%s_result%d'%(train_name,  eidx+start_point))
+            cws.save('epoch%d'%(eidx+start_point))
+            # print 'Current model saved'

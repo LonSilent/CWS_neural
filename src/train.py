@@ -47,9 +47,9 @@ if __name__ == "__main__":
                   max_sent_len = 60,
                   beam_size = 4,
                   shuffle_data = True,
-                  train_file = '../data/train',
-                  dev_file = '../data/train',
+                  train_file = '../data/train-ec',
+                  dev_file = '../data/trainec',
                   lr = 0.2,
-                  pre_training = '../w2v/ec_vecs_50',
+                  pre_training = '../w2v/ec_train_50',
                   )
 
