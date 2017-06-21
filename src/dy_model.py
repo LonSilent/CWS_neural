@@ -248,6 +248,7 @@ def dy_train_model(
         cws.load(load_params)
 
     if is_test:
+        print "Start testing"
         test(cws, test_file, 'ec_result.txt')
         sys.exit()
 
