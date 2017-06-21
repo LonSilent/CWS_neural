@@ -229,6 +229,7 @@ def dy_train_model(
     shuffle_data = True,
     train_file = '../data/train',
     dev_file = '../data/dev',
+    test_file = '../data/sentence_title.txt'
     lr = 0.2,
     pre_training = '../w2v/c_vecs_50',
     is_test = False
@@ -247,7 +248,8 @@ def dy_train_model(
         cws.load(load_params)
 
     if is_test:
-        test(cws, dev_file, 'ec_result.txt')
+        test(cws, test_file, 'ec_result.txt')
+        sys.exit()
 
     char_seq, _ , truth = prepareData(character_idx_map,train_file)
     

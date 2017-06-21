@@ -42,7 +42,7 @@ if __name__ == "__main__":
                   regularization = 0.000001,
                   margin_loss_discount = 0.2,
                   max_word_len = 10,
-                  load_params = None,
+                  load_params = '../src/train-ec_epoch50',
                   start_point = 1,
                   max_sent_len = 60,
                   beam_size = 4,
