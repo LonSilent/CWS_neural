@@ -229,7 +229,7 @@ def dy_train_model(
     shuffle_data = True,
     train_file = '../data/train',
     dev_file = '../data/dev',
-    test_file = '../data/sentence_title.txt'
+    test_file = '../data/sentence_title.txt',
     lr = 0.2,
     pre_training = '../w2v/c_vecs_50',
     is_test = False
