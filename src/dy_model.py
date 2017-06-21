@@ -7,6 +7,7 @@ from dy_test import test
 import numpy as np
 import random,time
 import os
+import sys
 
 Sentence = namedtuple('Sentence',['score','score_expr','LSTMState','y','prevState','wlen'])
 
@@ -229,7 +230,8 @@ def dy_train_model(
     train_file = '../data/train',
     dev_file = '../data/dev',
     lr = 0.2,
-    pre_training = '../w2v/c_vecs_50'
+    pre_training = '../w2v/c_vecs_50',
+    is_test = False
 ):
     options = locals().copy()
     print 'Model options:'
@@ -243,6 +245,9 @@ def dy_train_model(
 
     if load_params is not None:
         cws.load(load_params)
+
+    if is_test:
+        test(cws, dev_file, 'ec_result.txt')
 
     char_seq, _ , truth = prepareData(character_idx_map,train_file)
     
@@ -280,5 +285,6 @@ def dy_train_model(
 
         if (eidx + start_point) % 10 == 0:
             test(cws,dev_file,'../result/%s_result%d'%(train_name,  eidx+start_point))
-            cws.save('epoch%d'%(eidx+start_point))
+            if (eidx + start_point) == 50:
+                cws.save('%s_epoch%d'%(train_name, eidx+start_point))
             # print 'Current model saved'

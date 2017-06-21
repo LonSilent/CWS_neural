@@ -51,5 +51,6 @@ if __name__ == "__main__":
                   dev_file = '../data/trainec',
                   lr = 0.2,
                   pre_training = '../w2v/ec_train_50',
+                  is_test = False
                   )
 
