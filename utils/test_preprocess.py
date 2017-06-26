@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import re
 import sys
+import codecs
 
 Maximum_Word_Length = 10
 chinese_idioms_file = '../data/idioms'
@@ -22,6 +23,11 @@ def strQ2B(ustring):
     return rstring
 
 def preprocess(path,filename,longwords=None):
+    punc = []
+    with codecs.open('../data/symbol_zh.txt', 'r', 'utf8') as f:
+        for line in f:
+            punc.append(line.strip())
+
     idioms = []
     f = open(chinese_idioms_file)
     for line in f.readlines():
@@ -49,6 +55,14 @@ def preprocess(path,filename,longwords=None):
         sent = re.sub(rENG, u'X', sent)
         sent = re.sub(rNUM, u'0', sent)
         sent = sent.replace('0X', '0 X').replace('X0','X 0')
+        for p in punc:
+            if p not in sent:
+                continue
+            else:
+                sent = sent.replace(p, ' ' + p + ' ')
+        sent = re.sub(' +', ' ', sent)
+        sent = sent.strip()
+        print sent
         sents.append(sent)
     f.close()
     print 'idioms count',count_idioms
