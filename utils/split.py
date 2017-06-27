@@ -3,7 +3,7 @@ if __name__ == '__main__':
     ratio = 0.8
     line = 1000
     train = int(line * ratio)
-    test = int(line * (1 - ratio))
+    test = line - train
 
     sentences = []
     with open(data_path) as f:
