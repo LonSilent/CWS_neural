@@ -2,8 +2,8 @@ if __name__ == '__main__':
     data_path = '../data/train-ec'
     ratio = 0.8
     line = 1000
-    train = line * ratio
-    test = line * (1 - ratio)
+    train = int(line * ratio)
+    test = int(line * (1 - ratio))
 
     sentences = []
     with open(data_path) as f:
