@@ -43,7 +43,7 @@ def preprocess(path,filename,longwords=None):
     f = open(path)
     sents = []
     # rNUM = u'(-|\+)?\d+((\.|·)\d+)?%?'
-    rENG_NUM = u'^[A-Za-z0-9_-]*$'
+    rENG_NUM = u'^[A-Za-z0-9]*$'
     for line in f.readlines():
         sent = strQ2B(unicode(line.decode('utf8')).strip()).split(u' ')
         new_sent = []
